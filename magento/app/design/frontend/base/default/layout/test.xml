@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+    <default>
+        <reference name="content">
+        </reference>
+    </default>
+    <routeurfrontend_index_mamethode>
+        <reference name="content">
+            <block type="test/monblock"  name="afficher_monblock" template="pfay/afficher.phtml" />
+        </reference>
+    </routeurfrontend_index_mamethode>
+</layout>

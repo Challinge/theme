@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+
+<config>
+
+    <modules>
+        <Pfay_Test>
+            <version>1.0</version>
+        </Pfay_Test>
+    </modules>
+
+    <global>
+
+        <blocks>
+            <test>
+                <class>Pfay_Test_Block</class>
+            </test>
+        </blocks>
+
+        <models>
+            <test>
+                <!-- Dans Contact,  les models seront dans le répertoire app/code/local/Pfay/Contact/Model/ -->
+                <class>Pfay_Test_Model</class>
+                <!-- la « ressource » c’est-à-dire la chose utilisé pour aller chercher les données requises pour le model sera défini par test_mysql4 -->
+                <resourceModel>test_mysql4</resourceModel>
+            </test>
+            <test_mysql4>
+                <!-- Dans <test_mysql4> on définit que les classes seront dans app/code/local/Pfay/Contact/Model/Mysql4/ -->
+                <class>Pfay_Test_Model_Mysql4</class>
+                <entities>
+                    <!-- une entité test représentera la table mgrpc_pfay_test qu’on a crée précédemment dans la base de données -->
+                    <contact>
+                        <table>pfay_test</table>
+                    </contact>
+                </entities>
+            </test_mysql4>
+        </models>
+        <!-- permet au module de lire et ecrire -->
+        <resources>
+            <!-- connection pour ecrire -->
+            <test_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </test_write>
+            <!-- connection pour lire-->
+            <test_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </test_read>
+        </resources>
+
+
+    </global>
+
+    <frontend>
+
+        <routers>
+            <routeurfrontend>
+                <use>standard</use>
+                <args>
+                    <module>Pfay_Test</module>
+                    <frontName>test</frontName>
+                </args>
+            </routeurfrontend>
+        </routers>
+
+        <layout>
+            <updates>
+                <test>
+                    <file>test.xml</file>
+                </test>
+            </updates>
+        </layout>
+
+    </frontend>
+
+    <admin>
+        <routers>
+            <test>
+                <use>admin</use>
+                <args>
+                    <module>Pfay_Test</module>
+                    <frontName>admintest</frontName>
+                </args>
+            </test>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <test>
+                    <file>test.xml</file>
+                </test>
+            </updates>
+        </layout>
+        <menu>
+            <test translate="title" module="adminhtml">
+                <title>Mes modules</title>
+                <sort_order>100</sort_order>
+                <children>
+                    <set_time>
+                        <title>Carnet d'adresse</title>
+                        <action>admintest/adminhtml_index</action>
+                    </set_time>
+                </children>
+            </test>
+        </menu>
+    </adminhtml>
+
+</config>
